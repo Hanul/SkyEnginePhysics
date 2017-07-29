@@ -27,22 +27,16 @@ SkyEnginePhysics.Node = CLASS(() => {
 			
 			var bodies = Matter.Composite.allBodies(engine.world);
 			
-			let beforeDeltaMilliseconds;
+			let beforeDeltaTime;
 			
 			let step;
 			OVERRIDE(self.step, (origin) => {
 				
 				step = self.step = (deltaTime) => {
 					
-					let deltaMilliseconds = deltaTime * 1000;
+					Matter.Engine.update(engine, deltaTime * 1000, deltaTime / beforeDeltaTime);
 					
-					if (deltaMilliseconds > 30) {
-						deltaMilliseconds = 30;
-					}
-					
-					Matter.Engine.update(engine, deltaMilliseconds, deltaMilliseconds / beforeDeltaMilliseconds);
-					
-					beforeDeltaMilliseconds = deltaMilliseconds;
+					beforeDeltaTime = deltaTime;
 					
 					origin(deltaTime);
 				};
