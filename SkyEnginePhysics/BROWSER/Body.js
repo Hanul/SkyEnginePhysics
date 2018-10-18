@@ -54,24 +54,5 @@ SkyEnginePhysics.Body = CLASS({
 				origin(deltaTime);
 			};
 		});
-		
-		if (CONFIG.SkyEngine.isDebugMode === true) {
-			
-			let draw;
-			OVERRIDE(self.draw, (origin) => {
-				
-				self.draw = draw = (context, realX, realY, realScaleX, realScaleY, realRadian, realAlpha) => {
-					
-				    context.lineWidth = 1;
-				    context.strokeStyle = '#999';
-				    
-				    context.stroke();
-				    
-				    context.closePath();
-					
-					origin(context, realX, realY, realScaleX, realScaleY, realRadian, realAlpha);
-				};
-			});
-		}
 	}
 });

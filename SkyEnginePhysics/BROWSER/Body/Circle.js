@@ -12,7 +12,7 @@ SkyEnginePhysics.Circle = CLASS({
 		//REQUIRED: params.width
 		//REQUIRED: params.height
 		//OPTIONAL: params.isStatic
-			
+		
 		let width = params.width;
 		let height = params.height;
 		let isStatic = params.isStatic;
@@ -47,18 +47,11 @@ SkyEnginePhysics.Circle = CLASS({
 		
 		if (CONFIG.SkyEngine.isDebugMode === true) {
 			
-			let draw;
-			OVERRIDE(self.draw, (origin) => {
-				
-				self.draw = draw = (context, realX, realY, realScaleX, realScaleY, realRadian, realAlpha) => {
-					
-				    context.beginPath();
-					
-					context.ellipse(0, 0, width / 2, height / 2, 0, 0, 2 * Math.PI);
-					
-					origin(context, realX, realY, realScaleX, realScaleY, realRadian, realAlpha);
-				};
-			});
+			self.addToPixiContainer(SkyEngine.Circle.generateGraphics({
+				width : width,
+				height : height,
+				border : '1px solid #ffff00'
+			}));
 		}
 	}
 });

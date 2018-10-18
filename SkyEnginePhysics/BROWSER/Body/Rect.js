@@ -26,18 +26,11 @@ SkyEnginePhysics.Rect = CLASS({
 		
 		if (CONFIG.SkyEngine.isDebugMode === true) {
 			
-			let draw;
-			OVERRIDE(self.draw, (origin) => {
-				
-				self.draw = draw = (context, realX, realY, realScaleX, realScaleY, realRadian, realAlpha) => {
-					
-				    context.beginPath();
-					
-					context.rect(-self.getWidth() / 2, -self.getHeight() / 2, self.getWidth(), self.getHeight());
-					
-					origin(context, realX, realY, realScaleX, realScaleY, realRadian, realAlpha);
-				};
-			});
+			self.addToPixiContainer(SkyEngine.Rect.generateGraphics({
+				width : params.width,
+				height : params.height,
+				border : '1px solid #ffff00'
+			}));
 		}
 	}
 });
